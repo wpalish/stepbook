@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-24",
+  "version": "0.1.0",
+  "runtime": "Node 24.19.0",
+  "tests": {
+    "slug": "stepbook",
+    "tests": 4,
+    "pass": true,
+    "runtime": "v24.19.0"
+  },
+  "browser": {
+    "slug": "stepbook",
+    "status": "ui_workflow_passed",
+    "saved_operations": 4,
+    "labels": {
+      "g": "Учебная инструкция"
+    },
+    "reference": 86
+  },
+  "screens": [
+    "../.impeccable/review/desktop.jpg",
+    "../.impeccable/review/mobile.jpg",
+    "../.impeccable/review/user-1280.jpg"
+  ],
+  "limitations": "Экран автоматически не записывается; нет браузерного расширения и захвата снимков.",
+  "deployment": "source repository; server checked locally only",
+  "security_audit": false,
+  "customer_validation": false,
+  "review": {
+    "disposition": "ship",
+    "scope": "Reviewer scored the listed fixes resolved; not a new whole-surface/security audit",
+    "record": "verdict-pass.md"
+  },
+  "correctionBrowser": {
+    "slug": "stepbook",
+    "query": "Опубликовано внутри команды",
+    "result": "visible_label_and_no_results_recovery_passed"
+  }
+}

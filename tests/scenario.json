@@ -1,0 +1,53 @@
+[
+  {
+    "collection": "guides",
+    "as": "g",
+    "data": {
+      "name": "Учебная инструкция",
+      "owner": "TEST",
+      "review": "2099-12-31",
+      "status": "draft"
+    }
+  },
+  {
+    "collection": "steps",
+    "data": {
+      "guide": "$g",
+      "order": 2,
+      "action": "Проверить тест",
+      "result": "Вымышленный результат",
+      "source": ""
+    }
+  },
+  {
+    "collection": "guides",
+    "id": "$g",
+    "error": "непрерывная",
+    "data": {
+      "name": "Учебная инструкция",
+      "owner": "TEST",
+      "review": "2099-12-31",
+      "status": "published"
+    }
+  },
+  {
+    "collection": "steps",
+    "data": {
+      "guide": "$g",
+      "order": 1,
+      "action": "Начать учебный процесс",
+      "result": "Создан тест",
+      "source": ""
+    }
+  },
+  {
+    "collection": "guides",
+    "id": "$g",
+    "data": {
+      "name": "Учебная инструкция",
+      "owner": "TEST",
+      "review": "2099-12-31",
+      "status": "published"
+    }
+  }
+]
