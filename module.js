@@ -58,6 +58,7 @@ const definition = {
   ],
   validate(state, before, command, actor) {
     for (const g of rows(state, "guides")) {
+      const previousGuide = changed(before, "guides", g.id);
       const steps = live(state, "steps")
         .filter((s) => s.guide === g.id)
         .sort((a, b) => a.order - b.order);
@@ -67,19 +68,21 @@ const definition = {
           steps.length > 0 && steps.every((s, i) => s.order === i + 1),
           "Нужна непрерывная последовательность шагов от 1.",
         );
-        required(
-          g.review >= new Date().toISOString().slice(0, 10),
-          "Срок проверки инструкции истёк.",
-        );
+        if (previousGuide?.status !== "published")
+          required(
+            g.review >= new Date().toISOString().slice(0, 10),
+            "Срок проверки инструкции истёк.",
+          );
       }
     }
     for (const step of rows(state, "steps")) {
       const old = changed(before, "steps", step.id),
-        guide = byId(state, "guides", step.guide);
-      if (guide.status === "published")
+        guide = byId(state, "guides", step.guide),
+        previousGuide = old && byId(before, "guides", old.guide);
+      if (guide.status === "published" || previousGuide?.status === "published")
         required(
           old && JSON.stringify(old) === JSON.stringify(step),
-          "Сначала верните инструкцию в черновик.",
+          "Шаги можно менять и переносить только между черновиками инструкций.",
         );
     }
   },

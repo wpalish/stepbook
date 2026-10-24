@@ -1,34 +1,52 @@
 TAP version 13
-# Subtest: StepBook: complete original workflow, calculation and rejected invalid transition
-ok 1 - StepBook: complete original workflow, calculation and rejected invalid transition
+# Subtest: expired published guide preserves history without blocking unrelated edits or archival
+ok 1 - expired published guide preserves history without blocking unrelated edits or archival
   ---
-  duration_ms: 2.75425
+  duration_ms: 4.149708
+  type: 'test'
+  ...
+# Subtest: published source steps cannot be relocated into a draft even when the remaining sequence stays valid
+ok 2 - published source steps cannot be relocated into a draft even when the remaining sequence stays valid
+  ---
+  duration_ms: 5.129
+  type: 'test'
+  ...
+# Subtest: expired published guide restores after a date transition and requires a fresh date on republish
+ok 3 - expired published guide restores after a date transition and requires a fresh date on republish
+  ---
+  duration_ms: 0.734833
+  type: 'test'
+  ...
+# Subtest: StepBook: complete original workflow, calculation and rejected invalid transition
+ok 4 - StepBook: complete original workflow, calculation and rejected invalid transition
+  ---
+  duration_ms: 2.560459
   type: 'test'
   ...
 # Subtest: real file restart, optimistic conflict and validated restore into an empty database
-ok 2 - real file restart, optimistic conflict and validated restore into an empty database
+ok 5 - real file restart, optimistic conflict and validated restore into an empty database
   ---
-  duration_ms: 3.267
+  duration_ms: 5.497125
   type: 'test'
   ...
 # Subtest: HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
-ok 3 - HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
+ok 6 - HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
   ---
-  duration_ms: 72.117125
+  duration_ms: 69.547083
   type: 'test'
   ...
 # Subtest: two products on one host use isolated session cookies and preserve both logins
-ok 4 - two products on one host use isolated session cookies and preserve both logins
+ok 7 - two products on one host use isolated session cookies and preserve both logins
   ---
-  duration_ms: 89.287208
+  duration_ms: 86.005375
   type: 'test'
   ...
-1..4
-# tests 4
+1..7
+# tests 7
 # suites 0
-# pass 4
+# pass 7
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 212.534791
+# duration_ms 213.4425

@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-25",
+  "product": "stepbook",
+  "baseline_commit": "8471895",
+  "defects": [
+    "Expired published guide blocked unrelated writes and validated restore",
+    "Relocating final step into a draft changed published source while leaving a valid contiguous remaining sequence"
+  ],
+  "before_fix": {
+    "regressions_failed": 3,
+    "source_steps_before": 2,
+    "source_steps_after": 1,
+    "draft_steps_before": 1,
+    "draft_steps_after": 2,
+    "unrelated_error": "Срок проверки инструкции истёк.",
+    "restore_error": "Срок проверки инструкции истёк."
+  },
+  "policy": "Step mutations check previous source and current destination draft status. Published steps remain protected. UTC review date checked on transition into publication; expired historical publication permits unrelated work/archive/restore. Explicit return to draft and valid republish remain allowed.",
+  "tests": {
+    "passed": 7,
+    "failed": 0,
+    "runtime": "v24.19.0",
+    "log": "docs/test-output.txt",
+    "regression": "tests/lifecycle.test.js",
+    "coverage": [
+      "date transition, unrelated write and historical archive",
+      "rejected relocation/action change/archive from published source with complete data/revision/audit preserved",
+      "file restart and empty-database restore preserve source steps",
+      "draft relocation and explicit return to draft work",
+      "fresh publication/republish with expired review date rejected; valid date allowed",
+      "original continuous order, HTTP auth/CSRF/cookie and optimistic conflict checks remain passing"
+    ]
+  },
+  "browser": {
+    "data": "synthetic only, localhost8828",
+    "seed": "Historical2026-10-23 controlled clock only for fixture seed, reset before normal-clock HTTP server",
+    "transfer_rejection": {
+      "all_data_unchanged": true,
+      "published_steps": 2,
+      "draft_steps": 1,
+      "revision": 6,
+      "audit_events": 6
+    },
+    "unrelated_edit_and_expiry_rejection": {
+      "unrelated_draft_edit_saved": true,
+      "published_source_and_steps_unchanged": true,
+      "expired_publish_rejected": true,
+      "destination_status": "draft",
+      "revision": 7,
+      "audit_events": 7
+    },
+    "archived_history": {
+      "expired_published_guide_archived": true,
+      "original_review_and_published_status_retained": true,
+      "all_steps_unchanged": true,
+      "published_steps": 2,
+      "draft_steps": 1,
+      "revision": 8,
+      "audit_events": 8
+    },
+    "readback": "Show archive retains published status, original review date and2 source steps; destination retains1 step",
+    "screens": [
+      "docs/transfer-rejected.jpg",
+      "docs/expired-publish-rejected.jpg",
+      "docs/history-preserved.jpg"
+    ]
+  },
+  "limits": [
+    "Expired published status is historical, not proof the instruction remains current",
+    "No automatic repair of previously moved steps; manual reconciliation required",
+    "No public server hosting, browser recording, integrations or customer acceptance",
+    "Domain validation/error wording only; UI layout/schema unchanged; no fresh whole-interface/security audit"
+  ]
+}
